@@ -1,0 +1,51 @@
+import java.util.Arrays;
+
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int n = nums.length;
+        int[] result = new int[2];
+
+        // Sort a copy of the array, not the original, to preserve indices
+        int[] original = Arrays.copyOf(nums, n);
+        Arrays.sort(nums);
+
+        int i = 0;
+        int j = n - 1;
+
+        while (i < j) {
+            int sum = nums[i] + nums[j];
+            if (sum == target) {
+                // Find original indices of the numbers in the unsorted array
+                result[0] = findIndex(original, nums[i]);
+                result[1] = findIndex(original, nums[j], result[0]);
+                break;
+            } else if (sum > target) {
+                j--;
+            } else {
+                i++;
+            }
+        }
+
+        return result;
+    }
+
+    // Helper method to find the index of a number in the array
+    private int findIndex(int[] arr, int value) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == value) {
+                return i;
+            }
+        }
+        return -1; // Should never occur if input is valid
+    }
+
+    // Overloaded helper method to find the second occurrence of a value
+    private int findIndex(int[] arr, int value, int excludeIndex) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == value && i != excludeIndex) {
+                return i;
+            }
+        }
+        return -1; // Should never occur if input is valid
+    }
+}
