@@ -1,0 +1,41 @@
+class Solution {
+    public int[] getSubarrayBeauty(int[] nums, int k, int x) {
+        int n = nums.length;
+        int[] freq = new int[51]; // store counts for -1 to -50
+        int[] ans = new int[n - k + 1];
+
+        int left = 0;
+
+        for (int right = 0; right < n; right++) {
+
+            // add element to window
+            if (nums[right] < 0) {
+                freq[-nums[right]]++;
+            }
+
+            // when window size reaches k
+            if (right - left + 1 == k) {
+                int count = 0;
+                int beauty = 0;
+
+                // find x-th smallest negative
+                for (int i = 50; i >= 1; i--) {
+                    count += freq[i];
+                    if (count >= x) {
+                        beauty = -i;
+                        break;
+                    }
+                }
+
+                ans[left] = beauty;
+
+                // remove left element
+                if (nums[left] < 0) {
+                    freq[-nums[left]]--;
+                }
+                left++;
+            }
+        }
+        return ans;
+    }
+}
