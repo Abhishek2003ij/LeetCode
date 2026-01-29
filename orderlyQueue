@@ -1,0 +1,22 @@
+class Solution {
+    public String orderlyQueue(String s, int k) {
+
+        // Case 1: k > 1 → free rearrangement
+        if (k > 1) {
+            char[] ch = s.toCharArray();
+            Arrays.sort(ch);
+            return new String(ch);
+        }
+
+        // Case 2: k == 1 → rotations only
+        String ans = s;
+        for (int i = 1; i < s.length(); i++) {
+            String rotated = s.substring(i) + s.substring(0, i);
+            if (rotated.compareTo(ans) < 0) {
+                ans = rotated;
+            }
+        }
+
+        return ans;
+    }
+}
