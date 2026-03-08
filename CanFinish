@@ -1,4 +1,4 @@
-class Solution {
+class solution {
     public boolean canFinish(int n, int[][] pre) {
         int count =0;
         List<List<Integer>> adj = new ArrayList<>();
