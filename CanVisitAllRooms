@@ -1,5 +1,5 @@
 class Solution {
-    private void dfs(int ind, List<List<Integer>> rooms, boolean[] vis )
+    private void Dfs(int ind, List<List<Integer>> rooms, boolean[] vis )
     {
         vis[ind]=true;
         for(int node:rooms.get(ind))
