@@ -1,4 +1,4 @@
-class Solution {
+class solution {
     private void Dfs(int ind, List<List<Integer>> rooms, boolean[] vis )
     {
         vis[ind]=true;
