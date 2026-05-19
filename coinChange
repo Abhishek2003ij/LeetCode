@@ -1,0 +1,22 @@
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        if (amount < 1) return 0;
+        
+        int[] dp = new int[amount + 1];
+        // Fill with a value larger than any possible solution, but safe from overflow
+        java.util.Arrays.fill(dp, amount + 1); 
+        dp[0] = 0; // Base case: 0 coins needed for amount 0
+        
+        for (int i = 1; i <= amount; i++) {
+            for (int coin : coins) {
+                if (coin <= i) {
+                    // Change Math.max to Math.min
+                    dp[i] = Math.min(dp[i], 1 + dp[i - coin]);
+                }
+            }
+        }
+        
+        // If the value didn't change, the amount is unreachable
+        return dp[amount] > amount ? -1 : dp[amount];
+    }
+}
