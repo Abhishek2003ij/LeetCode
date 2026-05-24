@@ -1,0 +1,37 @@
+class Solution {
+
+    private int func(int start, int end, int[] nums, int[] dp) {
+
+        dp[start] = nums[start];
+
+        for (int i = start + 1; i < end; i++) {
+
+            int take = nums[i];
+
+            if (i - 2 >= start)
+                take += dp[i - 2];
+
+            int notTake = dp[i - 1];
+
+            dp[i] = Math.max(take, notTake);
+        }
+
+        return dp[end - 1];
+    }
+
+    public int rob(int[] nums) {
+
+        int n = nums.length;
+
+        if (n == 1)
+            return nums[0];
+
+        int[] dp1 = new int[n];
+        int[] dp2 = new int[n];
+
+        int ans0 = func(0, n - 1, nums, dp1); // exclude last
+        int ans1 = func(1, n, nums, dp2);     // exclude first
+
+        return Math.max(ans0, ans1);
+    }
+}
