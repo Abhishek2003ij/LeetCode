@@ -13,3 +13,30 @@ class Solution {
         
     }
 }
+
+// Using Recursion
+class Solution {
+
+    int[] dp = new int[31];
+
+    private int func(int n){
+
+        if(n == 0)
+            return 0;
+
+        if(n == 1)
+            return 1;
+
+        if(dp[n] != 0)
+            return dp[n];
+
+        dp[n] = func(n-1) + func(n-2);
+
+        return dp[n];
+    }
+
+    public int fib(int n) {
+
+        return func(n);
+    }
+}
