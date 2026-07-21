@@ -1,0 +1,45 @@
+class Solution {
+private void rev(int[] nums, int x, int y )
+{
+    while(x<=y)
+    {
+        int temp2 = nums[x];
+        nums[x] = nums[y];
+        nums[y] = temp2;
+        x++;
+        y--;
+    }
+}
+    public void nextPermutation(int[] nums) {
+        int temp =-1, temp1 =Integer.MAX_VALUE;
+        int index =-1, index1 =-1;
+        int n = nums.length;
+        
+        for(int i=n-2;i>=0;i--)
+        {
+            if(nums[i]<nums[i+1])
+            {
+                index =i;
+                break;
+
+            }
+        }
+    if(index ==-1)
+{
+    rev(nums,0,n-1);
+    return ;
+}
+for(int i=n-1;i>index;i--)
+{
+    if(nums[i]>nums[index])
+    {
+   temp = nums[i];
+   nums[i] = nums[index];
+   nums[index] = temp;
+   break;
+    }
+}
+    
+        rev(nums,index+1,n-1);
+    }
+}
