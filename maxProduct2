@@ -1,0 +1,17 @@
+class Solution {
+    public int maxProduct(int[] nums) {
+        int fl = Integer.MIN_VALUE;
+        int sl = Integer.MIN_VALUE;
+        
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] > fl) {
+                sl = fl;
+                fl = nums[i];
+            } else if (nums[i] > sl) {
+                sl = nums[i];
+            }
+        }
+        
+        return (fl - 1) * (sl - 1);
+    }
+}
