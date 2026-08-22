@@ -1,0 +1,17 @@
+class Solution {
+    public boolean checkDivisibility(int n) {
+        int div = 1;
+        int pro = 0;
+        int val = n;
+
+        while (val > 0) {
+            int temp = val % 10;
+            pro += temp;
+            div *= temp;
+            val = val / 10;
+        }
+
+        // Check if n is completely divisible by the total sum
+        return n % (div + pro) == 0;
+    }
+}
